@@ -14,5 +14,8 @@ library(tidyverse)
 oracle_data <- oracle_data %>%
   select(-Bottom_temp, -Surface_temp)
 
-names(example_data$sampling_data)
-names(oracle_data)
+# Check that they are named properly
+all(names(example_data$sampling_data) == names(oracle_data))
+
+# Can't be missing any values in a_i:
+any(is.na(oracle_data$AreaSwept_km2))
