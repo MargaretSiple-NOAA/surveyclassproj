@@ -7,7 +7,7 @@ packageVersion('FishStatsUtils')
 packageVersion('VAST')
 
 # Set species 
-Species <- "Hippoglossoides_elassodon" #FHS
+Species <- "Gadus_chalcogrammus" #pollock
 
 # Make folder to store results
 folder <- paste0(here::here(),"/",Species)
@@ -15,7 +15,7 @@ dir.create(folder)
 
 # Load data
 # From GOA files
-example_data <- load_example(data_set = "GOA_Pcod") #?load_example to see species options
+example_data <- load_example(data_set = "EBS_pollock") #?load_example to see species options
 Data_Geostat <- example_data$sampling_data
 
 
@@ -23,3 +23,8 @@ Data_Geostat <- example_data$sampling_data
 # source is: VASTGAP/Resources/Extrapolation Grids/EBSThorsonGrid.csv
 EBSgrid <- read.csv(here::here("Extrapolation_Grids", "EBSThorsonGrid.csv"))
 
+input_grid <- cbind(Lat = EBSgrid$Lat,
+                    Lon = EBSgrid$Lon,
+                    Area_km2 = EBSgrid$Shape_Area/1000000)  # Extrapolation grid area is in 
+# m^2 & is converted to km^2
+gc() #garbage collector
