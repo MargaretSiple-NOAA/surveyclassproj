@@ -7,6 +7,9 @@ library(tidyverse)
 packageVersion('FishStatsUtils')
 packageVersion('VAST')
 
+# Revert to old Matrix version
+#devtools::install_version("Matrix", version = "1.2-18", repos = "http://cran.us.r-project.org")
+
 # Set species 
 Species <- "Gadus_chalcogrammus" #pollock
 
@@ -65,7 +68,9 @@ fit <- fit_model( "settings"= settings, #all of the settings we set up above
                   "optimize_args" =list("lower"=-Inf,"upper"=Inf), #TMB argument (?fit_tmb)
                   "working_dir" = paste0(getwd(),"/",Species,"/"))
 
-## ## 
+# DOES NOT RUN
+
+##
 ## Plot results
 plot( fit )
 
